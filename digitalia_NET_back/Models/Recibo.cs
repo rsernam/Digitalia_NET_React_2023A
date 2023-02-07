@@ -8,15 +8,15 @@ namespace digitalia_NET_back.Models
     public class Recibo
     {
         [Key] 
-        public int IdRecibo { get; set; }
-        public int TipoMonedaRecibo { get; set; }
-        public Decimal MontoRecibo { get; set; }
-        public string? TituloRecibo { get; set; }
-        public string? DescripcionRecibo { get; set; }
-        public string? DireccionRecibo { get; set; }
-        public string? NombreRecibo { get; set; }
-        public string? NroDocumentoRecibo { get; set; }
-        public int TipoDocumentoRecibo { get; set; }
+        public int idRecibo { get; set; }
+        public int tipoMonedaRecibo { get; set; }
+        public Decimal montoRecibo { get; set; }
+        public string? tituloRecibo { get; set; }
+        public string? descripcionRecibo { get; set; }
+        public string? direccionRecibo { get; set; }
+        public string? nombreRecibo { get; set; }
+        public string? nroDocumentoRecibo { get; set; }
+        public int tipoDocumentoRecibo { get; set; }
 
         //Como usuario quiero subir un logo de mi marca
         //Como usuario quiero definir el tipo de monedo del recibo

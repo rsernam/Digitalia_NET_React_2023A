@@ -23,13 +23,13 @@ namespace digitalia_NET_back.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Recibo>>> ObtenerVentas()
+        public async Task<ActionResult<IEnumerable<Recibo>>> ObtenerRecibos()
         {
             return await _context.Recibos.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Recibo>> ObtenerVenta(int id)
+        public async Task<ActionResult<Recibo>> ObtenerRecibo(int id)
         {
             var recibo = await _context.Recibos
                 .FindAsync(id);
@@ -44,15 +44,15 @@ namespace digitalia_NET_back.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Recibo>> PostVenta(Recibo recibo)
+        public async Task<ActionResult<Recibo>> PostRecibo(Recibo recibo)
         {
 
             _context.Recibos.Add(recibo);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
-                nameof(ObtenerVenta),
-                new { id = recibo.IdRecibo},
+                nameof(ObtenerRecibo),
+                new { id = recibo.idRecibo},
                 recibo);
         }
 
