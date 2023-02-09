@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using digitalia_NET_back.Models;
 using digitalia_NET_back.Attributes;
+using System;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace digitalia_NET_back.Controllers
@@ -46,8 +47,11 @@ namespace digitalia_NET_back.Controllers
         [HttpPost]
         public async Task<ActionResult<Recibo>> PostRecibo(Recibo recibo)
         {
-
+            //System.
             _context.Recibos.Add(recibo);
+
+            Console.WriteLine("idRecibo= " + recibo.idRecibo.ToString() + "/"+ recibo.nombreRecibo.ToString());
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(

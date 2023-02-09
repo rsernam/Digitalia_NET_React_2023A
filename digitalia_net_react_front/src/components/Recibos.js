@@ -1,13 +1,36 @@
 import React from 'react';
 import axios from 'axios';
 import '../App.css';
+import Canvas from './Canvas';
 //import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
+
+
+const draw = context => {
+
+    context.beginPath();
+    context.font = 20 + 'px ' + 'Arial';
+    context.textAlign = 'left';
+    context.textBaseline = 'top';
+    context.fillStyle = 'black';
+    context.fillText("RECIBO 1", 20, 5);
+    context.fillText("RECIBO 2", 20, 25);
+    context.fillText("RECIBO 3", 20, 45);
+    context.fillText("RECIBO 4", 20, 65);
+    context.stroke();
+
+};
+
 
 export default class Recibos extends React.Component { 
 
     state = {
         recibos: [],
-        selectedFile: null
+        selectedFile: null,
+        reciboSeleccionado: {
+
+        },
+        estadoRecibo: false
     }
 
     componentDidMount() {
@@ -26,6 +49,40 @@ export default class Recibos extends React.Component {
                 console.error('There was an error!', error);
             });
     }
+
+
+
+    ImagenRecibo = () => {
+        if (this.state.estadoRecibo) {
+            return (
+                <div>
+                    <Canvas draw={draw} height={600} width={1000} nombre={this.state.reciboSeleccionado.tituloRecibo} />
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                </div>
+            );
+        }
+
+    };
+
+    descargaArchivo = event => {
+        /*
+        this.setState({ estadoRecibo: true });
+        console.log(event.target.value)
+        console.log(this.state.recibos)
+        var recSeleccionado = this.state.recibos.find(element => {
+            return element.idRecibo === event.target.value;
+        })
+        this.setState({ reciboSeleccionado: recSeleccionado });
+        console.log(recSeleccionado)
+        */
+
+    };
+
 
     render() {
 
@@ -48,7 +105,7 @@ export default class Recibos extends React.Component {
                             <td>{recibo.direccionRecibo}</td>
                             <td>{recibo.nombreRecibo}</td>
                             <td>
-                                <button type="submit">Descargar PDF</button>
+                                <button type="submit" value={recibo.idRecibo} onClick={this.descargaArchivo}>Descargar PDF</button>
                             </td>
 
                             
@@ -57,6 +114,9 @@ export default class Recibos extends React.Component {
                         </tr>
                     )}
                 </tbody>
+                <br />
+                {this.ImagenRecibo()}
+                
             </table>
         );
 

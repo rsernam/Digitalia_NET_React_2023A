@@ -84,15 +84,18 @@ export default class CrearRecibo extends React.Component {
         console.log(recibo);
         console.log('---------------------');
 
-        axios.post('https://localhost:7281/api/recibos', { recibo }, {
+        axios.post('https://localhost:7281/api/recibos', recibo, {
             headers: {
                 'secret-api-key': 'DIGITALIA_API_KEY'
             }
         })
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                window.location.reload(false);
+            });
+
+       
     }
 
     render() {
@@ -103,7 +106,7 @@ export default class CrearRecibo extends React.Component {
                         <tbody>
                             <tr>
                                 <td><label>ID de recibo: </label></td>
-                                <td><input type="text" name="idRecibo" onChange={this.handleChange} required="required" /></td>
+                                <td><input type="number" name="idRecibo" onChange={this.handleChange} required="required" /></td>
                             </tr>
                             <tr>
                                 <td><label>Moneda: </label></td>
@@ -117,7 +120,7 @@ export default class CrearRecibo extends React.Component {
                             </tr>
                             <tr>
                                 <td><label>Monto: </label></td>
-                                <td><input type="text" name="montoRecibo" onChange={this.handleChange} required="required" /></td>
+                                <td><input type="number" name="montoRecibo" onChange={this.handleChange} required="required" /></td>
                             </tr>
                             <tr>
                                 <td><label>Titulo: </label></td>
@@ -148,7 +151,7 @@ export default class CrearRecibo extends React.Component {
 
                             <tr>
                                 <td><label>Nro. de Documento: </label></td>
-                                <td><input type="text" name="nroDocumentoRecibo" onChange={this.handleChange} required="required" /></td>
+                                <td><input type="number" name="nroDocumentoRecibo" onChange={this.handleChange} required="required" /></td>
                             </tr>
                             <tr>
                                 <td style={{ textAlign: 'center' }} colSpan="2">
